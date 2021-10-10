@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
 import api from './services/api'
+import MovieRow from './Components/MovieRow';
 
 function App() {
 
@@ -21,9 +22,7 @@ function App() {
     <div className="page">
       <section className="lists">
         {movieList.map( (item, key) => (
-          <div>
-            {item.title}
-          </div>
+          <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
     </div>
