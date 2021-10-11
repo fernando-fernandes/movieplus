@@ -67,6 +67,11 @@ function App() {
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
+
+      <footer>
+        Feito com <span role="img" aria-label="coração">❤️</span>
+        <p>Dados obtidos no site <a href="https://themoviedb.org">themoviedb.org</a></p>
+      </footer>
     </div>
   );
 }
