@@ -3,6 +3,7 @@ import MovieRow from './Components/MovieRow';
 import FeaturedMovie from './Components/FeaturedMovie';
 import Header from './Header';
 
+import Logo from './Assets/loading.gif'
 import api from './services/api'
 import './App.scss';
 
@@ -12,7 +13,7 @@ function App() {
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
 
-  useEffect( () => {
+  useEffect(() => {
 
     const loadAll = async () => {
 
@@ -21,8 +22,8 @@ function App() {
       setMovieList(list)
 
       //Pegar o destaque
-      let originals = list.filter( i => i.slug === 'originals')
-      let randomChosen = Math.floor( Math.random() * (originals[0].items.results.length - 1) )
+      let originals = list.filter(i => i.slug === 'originals')
+      let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length - 1))
       let chosen = originals[0].items.results[randomChosen];
       let chosenInfo = await api.getMovieInfo(chosen.id, 'tv')
 
@@ -33,7 +34,7 @@ function App() {
 
   }, [])
 
-  useEffect( () => {
+  useEffect(() => {
 
     const scrollListener = () => {
       if (window.scrollY > 10) {
@@ -61,9 +62,9 @@ function App() {
         featuredData &&
         <FeaturedMovie item={featuredData} />
       }
-      
+
       <section className="lists">
-        {movieList.map( (item, key) => (
+        {movieList.map((item, key) => (
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
@@ -72,6 +73,16 @@ function App() {
         Feito com <span role="img" aria-label="coração">❤️</span>
         <p>Dados obtidos no site <a href="https://themoviedb.org">themoviedb.org</a></p>
       </footer>
+
+      {
+        movieList.length <= 0 &&
+        <div className="loading">
+          <img src={Logo} alt="Carregando" />
+        </div>
+      }
+
+
+
     </div>
   );
 }

@@ -8,14 +8,14 @@ export default function Header( {scroll} ) {
     return (
         <header className={scroll ? 'scroll': ''}>
             <div className="header--logo">
-                <a href="/">
+                <a href="/" alt="Logo">
                     <img src={Logo} alt="Logo" />
                 </a>
             </div>
 
             <div className="header--user">
                 <a href="/">
-                    <img src={User} />
+                    <img src={User} alt="User" />
                 </a>
             </div>
         </header>
